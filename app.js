@@ -3,8 +3,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Contact = require('./models/contacts');
 
+
+
 // Creating an express app
 const app = express();
+
+
+
+// Inbuilt express function to break down a structured URL encoded data submitted in the body of a request
+app.use(express.urlencoded());
+
 
 
 // Defining the required variables for the database
@@ -13,7 +21,13 @@ const password = "localhost";
 const DBname = "MERN";
 
 
-// Connecting to our MongoDB
+
+// Using EJS view engine to insert dynamic content into my webpage
+app.set('view engine', 'ejs');
+
+
+
+// Connecting to our MongoDB's Contact database
 const databaseURL = `mongodb+srv://${username}:${password}@mern.jucmp8x.mongodb.net/${DBname}?retryWrites=true&w=majority`;
 mongoose.connect(databaseURL)
 .then((data) => {
@@ -27,8 +41,8 @@ mongoose.connect(databaseURL)
 });
 
 
-// Using EJS view engine to insert dynamic content into my webpage
-app.set('view engine', 'ejs');
+
+
 
 
 // Defining a middleware which will run on each request but we'll use next function in order to force execution of code written after it as by default program stops executing after encountering any middleware
@@ -41,24 +55,23 @@ app.use((request, response, next) => {
 });
 
 
-// Defining the routes in express using render method of EJS view engine and sending dynamic object title with it to the home page
-app.get('/', (request, response) => {
-    response.render('home', {title : 'Home'});
-});
-app.get('/about', (request, response) => {
-    response.render('about', {title : 'About'});
-});
+
+// Defining a GET request in order to serve all the contacts present in the database
 app.get('/view-contacts', (request, response) => {
-    response.render('viewContacts', {title : 'All Contacts'});
-});
-app.get('/create-contact', (request, response) => {
-    // Creating an object of Contact type and saving to the database
-    const contact = new Contact({
-        fullName : "Chaitya Khanna",
-        homeTown : "Bikaner, Rajasthan",
-        phoneNumber : "+91-7014521576",
-        emailAddress : "chaityakhanna@gmail.com"
+    Contact.find()
+    .then((data) => {
+        response.send(data);
+    })
+    .catch((error) => {
+        console.log(error);
     });
+});
+
+
+
+// Defining a POST request in order to make entries in the contact database
+app.post('/create-contact', (request, response) => {
+    const contact = new Contact(request.body);
     contact.save()
     .then((data) => {
         response.send(data);
@@ -66,17 +79,54 @@ app.get('/create-contact', (request, response) => {
     .catch((error) => {
         console.log(error);
     });
-    // response.render('addContacts', {title : 'Add Contacts'});
 });
-app.get('/delete-contact', (request, response) => {
-    response.render('deleteContact', {title : 'Delete Contacts'});
+
+
+
+// Defining a GET request in order to fetch contact data using the transaction ID
+app.get('/view-contacts/:id', (request, response) => {
+    const id = request.params.id;
+    Contact.findById(id)
+    .then((data) => {
+        response.send(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 });
-app.get('/modify-contact', (request, response) => {
-    response.render('modifyContact', {title : 'Modify Contacts'});
+
+
+
+// Defining a DELETE request in order to delete data from the database using the transaction ID
+app.delete('/delete-contact/:id', (request, response) => {
+    const id = request.params.id;
+    Contact.findByIdAndDelete(id)
+    .then((data) => {
+        response.send(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 });
-app.get('/view-contact', (request, response) => {
-    response.render('viewContact', {title : 'Single Contact'});
+
+
+
+// Defining a PUT request in order to modify a particular contact data using the transaction ID
+app.put('/modify-contact/:id', (request, response) => {
+    const id = request.params.id;
+    const newData = request.body;
+    Contact.updateOne({_id: id}, newData)
+    .then((data) => {
+        response.send(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 });
+
+
+
+// Defining a 404 request in order to serve all the invalid URL requests
 app.use((request, response) => {
     response.status(404);
     response.render('404', {title : '404'});
