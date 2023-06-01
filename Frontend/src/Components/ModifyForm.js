@@ -3,16 +3,21 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
-const ModifyForm = ({c}) => {
+const ModifyForm = ({contactData}) => {
+    // Extracting the id from the URL passed by the user
     const { id } = useParams();
-    const [fullName, setfullName] = useState(c.fullName);
-    const [homeTown, sethomeTown] = useState(c.homeTown);
-    const [phoneNumber, setphoneNumber] = useState(c.phoneNumber);
-    const [emailAddress, setemailAddress] = useState(c.emailAddress);
+
+
+
+    const [fullName, setfullName] = useState(contactData.fullName);
+    const [homeTown, sethomeTown] = useState(contactData.homeTown);
+    const [phoneNumber, setphoneNumber] = useState(contactData.phoneNumber);
+    const [emailAddress, setemailAddress] = useState(contactData.emailAddress);
     const navigate = useNavigate();
 
 
 
+    // Function to store the input values from the form to their respective states
     const handleChange = (event) => {
         const {name, value} = event.target;
         if (name === 'fullName')
@@ -33,6 +38,9 @@ const ModifyForm = ({c}) => {
         }
     };
 
+
+
+    // Function to make a PUT request to the backend server in order to modify the current contact to new values based on its ID
     const handleClick = () => {
         const data = {
             "fullName": fullName,
@@ -40,8 +48,6 @@ const ModifyForm = ({c}) => {
             "phoneNumber": phoneNumber,
             "emailAddress": emailAddress,
         };
-
-        console.log(data);
 
         fetch(`http://localhost:8181/modify-contact/${id}`, {
             method: 'PUT',
@@ -51,7 +57,6 @@ const ModifyForm = ({c}) => {
             body: JSON.stringify(data),
         })
         .then((response) => {
-            console.log(response.json());
             navigate(`/view-contact/${id}`);
         })
         .catch((error) => {
@@ -59,6 +64,8 @@ const ModifyForm = ({c}) => {
         });
     };
     
+
+
     return (
         <div>
             <center>

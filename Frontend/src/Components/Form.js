@@ -3,11 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
 const Form = () => {
+    // Defining the states to store the input from the form
     const [fullName, setfullName] = useState(null);
     const [homeTown, sethomeTown] = useState(null);
     const [phoneNumber, setphoneNumber] = useState(null);
     const [emailAddress, setemailAddress] = useState(null);
     const navigate = useNavigate();
+
+
+
+    // Function to store the data from the input fields from the form into their respective variables
     const handleChange = (event) => {
         const {name, value} = event.target;
         if (name === 'fullName')
@@ -28,6 +33,9 @@ const Form = () => {
         }
     };
 
+
+
+    // Function to save the contact data object to the database by making a POST request to the backend
     const handleClick = () => {
         const data = {
             "fullName": fullName,
@@ -35,9 +43,6 @@ const Form = () => {
             "phoneNumber": phoneNumber,
             "emailAddress": emailAddress,
         };
-
-        console.log(data);
-
         fetch('http://localhost:8181/create-contact', {
             method: 'POST',
             headers: {
@@ -47,6 +52,7 @@ const Form = () => {
         })
         .then((response) => {
             console.log(response.json());
+            // Navigate function is used instead of redirect and href in order to provide native feel and render the components without sending a request back to the server
             navigate('/');
         })
         .catch((error) => {

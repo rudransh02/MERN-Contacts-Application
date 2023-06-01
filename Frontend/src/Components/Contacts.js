@@ -3,6 +3,7 @@ import { useState } from "react";
 import ContactCard from './ContactCard';
 
 export default function Contacts() {
+    // Funtion that makes an API call and brings in all the contacts from the backend server
     const getContactById = async () => {
         const base = `http://localhost:8181/view-contacts`;
         const response = await fetch(base);
@@ -10,6 +11,9 @@ export default function Contacts() {
         return data;
     };
 
+
+
+    // State named contacts in order to store the data brought by the API call
     const [contacts, setContacts] = useState(null);
     getContactById()
     .then((data) => {
@@ -28,6 +32,7 @@ export default function Contacts() {
             marginTop: '10px'
         }}
         >
+            // Conditional rendering is used with the map function in order to iterate over the contacts array and then passing single contact one by one to another component
             {contacts && contacts.map(contact=><ContactCard contact = {contact} key={contact._id} />)}
         </div>
     );

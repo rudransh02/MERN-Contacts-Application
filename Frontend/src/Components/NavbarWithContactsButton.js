@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { Link } from 'react-router-dom';
 
+// Navbar component with a contacts button on it to take the user back to the homepage
 export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>

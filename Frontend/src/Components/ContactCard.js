@@ -5,9 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 const ContactCard = ({contact}) => {
+    // Destructuring the prop passed from the parent element
     let {_id, fullName, homeTown, phoneNumber, emailAddress} = contact;
     let link = `http://localhost:3000/view-contact/${_id}`;
     return (
+        // Functionality of clicking any single contact and taking to the contact edit or delete page
         <Link to={link}>
         <Card>
         <ButtonBase style={{ width: '100%', padding: '0', margin: '0' }}>
@@ -16,14 +18,14 @@ const ContactCard = ({contact}) => {
                     {fullName}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                     {homeTown}
+                    {homeTown}
                 </Typography>
                 <Typography sx={{ fontSize: 18 }} variant="body2">
-                     {phoneNumber}
+                    {phoneNumber}
                 </Typography>
                 <Typography sx={{ fontSize: 18 }} variant="body2">
                     <br />
-                     {emailAddress}
+                    {emailAddress}
                 </Typography>
             </CardContent>
         </ButtonBase>
