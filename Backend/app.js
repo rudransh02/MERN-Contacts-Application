@@ -15,12 +15,12 @@ const app = express();
 app.use(cors());
 
 
-// Inbuilt express function to break down a structured URL encoded data submitted in the body of a request
-//postman
+// Inbuilt express function to parse(break down) a structured URL encoded data submitted in the body of a request which is used by Postman Software to test APIs
 app.use(express.urlencoded());
 
-//react app
+// Seperate middleware used to parse(break down) a JSON payload encoded data which is used by the React to make API requests
 app.use(bodyParser.json());
+
 
 
 // Defining the required variables for the database

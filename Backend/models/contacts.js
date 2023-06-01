@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-// Schema will define the structure of our database
+// Schema will define the structure of our database object
 const Schema = mongoose.Schema;
 
 
