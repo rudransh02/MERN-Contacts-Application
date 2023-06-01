@@ -1,7 +1,9 @@
 // Requiring all the necessary packages
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const Contact = require('./models/contacts');
+const bodyParser = require('body-parser');
 
 
 
@@ -9,10 +11,16 @@ const Contact = require('./models/contacts');
 const app = express();
 
 
+// Cross Origin Resource Sharing is a security feature built into browsers that ensures that web pages from one domain are not able to make requests to another domain unless the second domain explicitly allows it so we're allowing it explicitly here
+app.use(cors());
+
 
 // Inbuilt express function to break down a structured URL encoded data submitted in the body of a request
+//postman
 app.use(express.urlencoded());
 
+//react app
+app.use(bodyParser.json());
 
 
 // Defining the required variables for the database
@@ -39,9 +47,6 @@ mongoose.connect(databaseURL)
 .catch((error) => {
     console.log("Error Connecting With The Database Or Localhost!");
 });
-
-
-
 
 
 
@@ -72,6 +77,7 @@ app.get('/view-contacts', (request, response) => {
 // Defining a POST request in order to make entries in the contact database
 app.post('/create-contact', (request, response) => {
     const contact = new Contact(request.body);
+    // console.log(request.body);
     contact.save()
     .then((data) => {
         response.send(data);
@@ -102,7 +108,7 @@ app.delete('/delete-contact/:id', (request, response) => {
     const id = request.params.id;
     Contact.findByIdAndDelete(id)
     .then((data) => {
-        response.send(data);
+        response.send("dsds");
     })
     .catch((error) => {
         console.log(error);
