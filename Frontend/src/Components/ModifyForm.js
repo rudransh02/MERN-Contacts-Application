@@ -8,11 +8,20 @@ const ModifyForm = ({contactData}) => {
     const { id } = useParams();
 
 
+    const getById = (id) => {
+        for (const key in contactData) {
+            if (contactData[key]._id === id) {
+                return contactData[key];
+            }
+        }
+    }
+    const contact = getById(id);
 
-    const [fullName, setfullName] = useState(contactData.fullName);
-    const [homeTown, sethomeTown] = useState(contactData.homeTown);
-    const [phoneNumber, setphoneNumber] = useState(contactData.phoneNumber);
-    const [emailAddress, setemailAddress] = useState(contactData.emailAddress);
+
+    const [fullName, setfullName] = useState(contact.fullName);
+    const [homeTown, sethomeTown] = useState(contact.homeTown);
+    const [phoneNumber, setphoneNumber] = useState(contact.phoneNumber);
+    const [emailAddress, setemailAddress] = useState(contact.emailAddress);
     const navigate = useNavigate();
 
 

@@ -14,7 +14,7 @@ export default function Navbar() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Contact Management Application
                     </Typography>
-                    // A button on the navbar to create a new contact
+                    {/* A button on the navbar to create a new contact */}
                     <Link color="inherit" to='http://localhost:3000/create-contact'><AddIcon fontSize='large'/></Link>
                 </Toolbar>
             </AppBar>

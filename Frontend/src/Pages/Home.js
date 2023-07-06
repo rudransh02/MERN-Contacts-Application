@@ -2,11 +2,11 @@ import Contacts from "../Components/Contacts";
 import Navbar from "../Components/NavbarWithCreateContactButton";
 
 // The Home Component
-const Home = () => {
+const Home = ({ contactData }) => {
     return (
         <div className="Home">
             <Navbar />
-            <Contacts />
+            <Contacts contactData = {contactData} />
         </div>
     );
 }

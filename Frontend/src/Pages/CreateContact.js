@@ -6,7 +6,7 @@ const CreateContact = () => {
         <div className="createContact">
             <NavbarWithContactsButton />
             <center><h1>Create Contact Route</h1></center>
-            // Form to create a new contact and save it to the database
+            {/* Form to create a new contact and save it to the database */}
             <Form />
         </div>
     );
