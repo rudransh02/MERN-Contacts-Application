@@ -23,7 +23,7 @@ const ViewContact = ({ contactData }) => {
             {/* Navbar component with a Contacts button to navigate the user back to the homepage */}
             <NavbarWithContactsButton />
             <center>
-                <h1>View Single Contact Route</h1>
+                <h1 style={{ color: "#D5DEF5" }}>View Single Contact Route</h1>
                 {/* Component containing the edit and delete page of a particular contact */}
                 <ContactDetails contact = {contact} id = {id} />
             </center>

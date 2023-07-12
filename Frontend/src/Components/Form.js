@@ -67,22 +67,22 @@ const Form = () => {
                 <br />
                 <br />
                 <br />
-                <TextField onChange={handleChange} name="fullName" fullWidth id="standard-basic" label="Full Name" variant="standard" />
+                <TextField InputLabelProps={{ style: { color: "#D5DEF5"}}} inputProps={{ style: { color: "#D5DEF5" }}} onChange={handleChange} name="fullName" fullWidth id="standard-basic" label="Full Name" variant="standard" />
                 <br />
                 <br />
                 <br />
                 <br />
-                <TextField onChange={handleChange} name="hometown" fullWidth id="standard-basic" label="Hometown" variant="standard" />
+                <TextField InputLabelProps={{ style: { color: "#D5DEF5"}}} inputProps={{ style: { color: "#D5DEF5" }}} onChange={handleChange} name="hometown" fullWidth id="standard-basic" label="Hometown" variant="standard" />
                 <br />
                 <br />
                 <br />
                 <br />
-                <TextField onChange={handleChange} name="phoneNumber" fullWidth id="standard-basic" label="Contact Number" variant="standard" />
+                <TextField InputLabelProps={{ style: { color: "#D5DEF5"}}} inputProps={{ style: { color: "#D5DEF5" }}} onChange={handleChange} name="phoneNumber" fullWidth id="standard-basic" label="Contact Number" variant="standard" />
                 <br />
                 <br />
                 <br />
                 <br />
-                <TextField onChange={handleChange} name="emailAddress" fullWidth id="standard-basic" label="Email Address" variant="standard" />
+                <TextField InputLabelProps={{ style: { color: "#D5DEF5"}}} inputProps={{ style: { color: "#D5DEF5" }}} onChange={handleChange} name="emailAddress" fullWidth id="standard-basic" label="Email Address" variant="standard" />
                 <br />
                 <br />
                 <br />
