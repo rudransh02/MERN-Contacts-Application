@@ -2,6 +2,7 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import { Button } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { useNavigate } from 'react-router-dom';
+import "./Components.css";
 
 const ContactDetails = ({ contact, id }) => {
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ const ContactDetails = ({ contact, id }) => {
 
 
     return (
-        <div>
+        <div className='details'>
             <h1>Details</h1>
             <Button onClick={handleEdit}>
                 <EditOutlinedIcon />

@@ -9,13 +9,13 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" sx={{ backgroundColor: "#ED6363", borderRadius: "3px" }} >
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Contact Management Application
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#001C30" }}>
+                        ContactVault
                     </Typography>
                     {/* A button on the navbar to create a new contact */}
-                    <Link color="inherit" to='http://localhost:3000/create-contact'><AddIcon fontSize='large'/></Link>
+                    <Link style={{ color: "#001C30"}} to='http://localhost:3000/create-contact'><AddIcon fontSize='large'/></Link>
                 </Toolbar>
             </AppBar>
         </Box>

@@ -10,12 +10,12 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar sx={{ backgroundColor: "#ED6363", borderRadius: "3px" }} position="static">
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Contact Management Application
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#001C30" }}>
+                        ContactVault
                     </Typography>
-                    <Link color="inherit" to='http://localhost:3000/'><ContactsIcon fontSize='large'/></Link>
+                    <Link style={{ color: "#001C30" }} to='http://localhost:3000/'><ContactsIcon fontSize='large'/></Link>
                 </Toolbar>
             </AppBar>
         </Box>

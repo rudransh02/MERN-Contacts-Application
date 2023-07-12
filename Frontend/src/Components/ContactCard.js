@@ -11,19 +11,19 @@ const ContactCard = ({contact}) => {
     return (
         // Functionality of clicking any single contact and taking to the contact edit or delete page
         <Link to={link}>
-        <Card>
+            <Card sx={{ backgroundColor: "#D5DEF5"}}>
         <ButtonBase style={{ width: '100%', padding: '0', margin: '0' }}>
-            <CardContent>
-                <Typography sx={{ mb: 1.5 }} variant="h5" component="div">
+                    <CardContent >
+                <Typography sx={{ color: "#001C30", mb: 1.5 }} variant="h5" component="div">
                     {fullName}
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                <Typography sx={{ color: "#001C30", mb: 1.5 }} color="text.secondary">
                     {homeTown}
                 </Typography>
-                <Typography sx={{ fontSize: 18 }} variant="body2">
+                <Typography sx={{ color: "#001C30", fontSize: 18 }} variant="body2">
                     {phoneNumber}
                 </Typography>
-                <Typography sx={{ fontSize: 18 }} variant="body2">
+                <Typography sx={{ color: "#001C30", fontSize: 18 }} variant="body2">
                     <br />
                     {emailAddress}
                 </Typography>
